@@ -1,14 +1,17 @@
-const { app, BrowserWindow } = require('electron');
-const path = require('node:path');
+import { app, BrowserWindow } from 'electron';
+import * as path from 'path';
+
+app.commandLine.appendSwitch('disable-gpu');
+app.commandLine.appendSwitch('disable-software-rasterizer');
 
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 if (require('electron-squirrel-startup')) {
   app.quit();
 }
 
-const createWindow = () => {
+const createWindow = (): void => {
   // Create the browser window.
-  const mainWindow = new BrowserWindow({
+  const mainWindow: BrowserWindow = new BrowserWindow({
     width: 800,
     height: 600,
     webPreferences: {
